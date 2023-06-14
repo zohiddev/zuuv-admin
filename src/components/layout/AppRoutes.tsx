@@ -54,11 +54,13 @@ const AppRoutes = () => {
                 </Dropdown>
             </Header>
             <Content className='page__content'>
-                <Routes>
-                    {routes.map(({ id, path, component }) => (
-                        <Route key={id} path={path} element={component} />
-                    ))}
-                </Routes>
+                <div className='container'>
+                    <Routes>
+                        {routes.map(({ id, path, component }) => (
+                            <Route key={id} path={path} element={component} />
+                        ))}
+                    </Routes>
+                </div>
             </Content>
         </Layout>
     );

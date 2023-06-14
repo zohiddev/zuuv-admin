@@ -10,28 +10,15 @@ export const mediaDeleteUrl = "api/v1/aws/delete";
 export const loginUrl = "/admin/login";
 export const refreshTokenUrl = `${baseURL}/admin/refresh`;
 
-// Company
-export const companyGetUrl = "/company";
-export const companyPatchUrl = (id: number) => `/company/${id}`;
+// Users
 
-// Company slider
-export const companySliderGetUrl = "/company/slider";
-export const companySliderDeleteUrl = "company/slider";
+export const usersListUrl = "/user";
+export const userAdsList = (id: number) => `/user/${id}/ads`;
 
-// Services
-export const servicesGetUrl = "/services";
-export const servicesPostUrl = "/services";
-export const servicesPatchUrl = (id: number) => `/services/${id}`;
-export const servicesDeleteUrl = "/services";
+// Courier
 
-// News
-export const newsGetUrl = "/news?limit=10";
-export const newsPostUrl = "/news";
-export const newsPatchUrl = (id: number) => `/news/${id}`;
-export const newsDeleteUrl = "/news";
+export const courierListUrl = "/courier";
 
-//  Slider
-export const sliderGetUrl = "/slider";
-export const sliderPostUrl = "/slider";
-export const sliderPatchUrl = (id: number) => `/slider/${id}`;
-export const sliderDeleteUrl = "/slider";
+// Parcels
+
+export const parcelsList = "/parcel";

@@ -10,7 +10,7 @@ export const responseInterceptor = async (response: AxiosResponse) => {
         return (window.location.href = "/logout");
     }
     if (
-        response?.data?.error?.message === "JWT_EXPIRED" &&
+        response?.data?.error?.message?.status === "JWT_EXPIRED" &&
         refresh_token !== null
     ) {
         try {

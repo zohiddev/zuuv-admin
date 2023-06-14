@@ -34,17 +34,12 @@ html {
 }
 
 .page {
-    &__sider,
-    &__header,
-    &__content {
-        background-color: #fff !important;
-    }
-
     &__sider {
         position: fixed;
         bottom: 0;
         left: 0;
         height: 100vh;
+        background-color: #fff !important;
 
         & > div {
             background-color: #fff;
@@ -75,11 +70,25 @@ html {
         position: fixed;
         top: 0;
         left: 256px;
-        background-color: black;
+        background-color: #fff !important;
         width: calc(100% - 256px);
         border-bottom: 1px solid rgba(5, 5, 5, 0.06);
         @include flex(center, flex-end);
     }
+
+    &__content {
+        background-color: $neotural-1;
+        padding-top: 80px;
+    }
+}
+
+.page-header {
+    background-color: $white;
+    width: 100%;
+    padding: 16px;
+    @include flex(center, space-between);
+    margin-bottom: 24px;
+    border-radius: 8px !important;
 }
 
 .sider {

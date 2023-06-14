@@ -27,14 +27,14 @@ import { Api, MediaApi } from "@api/index";
 //         return data;
 //     };
 //     return useQuery(key, () => service());
-// };
+// };userAdsList
 
 interface IEditData<T> {
     url: string;
     item: T;
 }
 
-const useGetList = <T>(key: string, url: string) => {
+const useGetList = <T>(key: string | string[], url: string) => {
     const service = async () => {
         const data: T = await Api.get(`${url}`);
 

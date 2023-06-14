@@ -20,4 +20,10 @@ interface IProfileMenu {
     label: ReactNode;
 }
 
+export type RequestT<T> = {
+    data: T;
+    error: string;
+    success: boolean;
+};
+
 export type { TKey, IRoutes, IMenus, IProfileMenu };

@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { IRoutes } from "./types";
-import { LogoutPage } from "@pages/index";
+import { LogoutPage, UsersPage } from "@pages/index";
 
 export const routes: IRoutes[] = [
     {
@@ -12,5 +12,10 @@ export const routes: IRoutes[] = [
         id: 3,
         path: "/logout",
         component: <LogoutPage />,
+    },
+    {
+        id: 4,
+        path: "/users",
+        component: <UsersPage />,
     },
 ];
