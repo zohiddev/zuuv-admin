@@ -1,0 +1,37 @@
+// colors
+$primary-100: #5542f6;
+$primary-75: #8071f8;
+$primary-50: #a9a0fa;
+$primary-25: #d4cffc;
+$primary-12: #eae8fe;
+$black-100: #1c1917;
+$black-10075: #555351;
+$black-10050: #8d8c8b;
+$black-10025: #c6c5c5;
+$neotural-1: #f2f3f7;
+$neotural-2: #f9f9fb;
+
+$white: #fff;
+
+// fonts
+$sf-pro: "SF Pro Text", san-serif;
+
+//  border
+$borderRadius: 32px;
+
+$spacing: 48px;
+
+$fontSizeNormal: 1.125rem;
+$fontSizeMedium: 1.25rem;
+$fontSizeLarge: 1.5625rem;
+
+$sideBarWidth: 384px;
+$sideBarLogoHeight: 171px;
+$mobileSpacing: 24px;
+
+$mobile-width: 600px;
+$tablet-width: 1024px;
+
+%transition {
+    transition: all 0.4s ease;
+}
