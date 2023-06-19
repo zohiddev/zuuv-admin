@@ -13,7 +13,7 @@ export const menubar: IMenus[] = [
     {
         id: 1,
         title: "Dashboard",
-        path: "/dashboard",
+        path: "/",
         icon: <DashboardIcon />,
     },
     {
@@ -25,21 +25,21 @@ export const menubar: IMenus[] = [
     {
         id: 3,
         title: "Kuryer e'loni",
-        path: "/ads",
+        path: "/posts?limit=12&type=courier",
         icon: <TruckIcon />,
     },
     {
         id: 4,
         title: "Yo'lovchi e'loni",
-        path: "/ads",
+        path: "/posts?limit=12&type=parcel",
         icon: <PersonIcon />,
     },
-    {
-        id: 5,
-        title: "Qo'llab quvvatlash",
-        path: "/",
-        icon: <SupportIcon />,
-    },
+    // {
+    //     id: 5,
+    //     title: "Qo'llab quvvatlash",
+    //     path: "/",
+    //     icon: <SupportIcon />,
+    // },
 ];
 
 export const profileMenu: MenuProps["items"] = [

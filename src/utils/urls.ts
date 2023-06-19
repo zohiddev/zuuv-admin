@@ -8,17 +8,18 @@ export const mediaDeleteUrl = "api/v1/aws/delete";
 
 // Login
 export const loginUrl = "/admin/login";
-export const refreshTokenUrl = `${baseURL}/admin/refresh`;
+export const refreshTokenUrl = `/admin/refresh`;
 
 // Users
 
 export const usersListUrl = "/user";
 export const userAdsList = (id: number) => `/user/${id}/ads`;
 
-// Courier
+// Posts
+export const postListUrl = "/posts/search";
+export const courierListUrl = "/posts/search?type=courier";
+export const parcelListUrl = "/posts/search?type=parcel";
 
-export const courierListUrl = "/courier";
+// Statistics
 
-// Parcels
-
-export const parcelsList = "/parcel";
+export const statistics = "/statistics/ads";

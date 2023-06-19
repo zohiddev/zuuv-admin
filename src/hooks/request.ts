@@ -34,9 +34,9 @@ interface IEditData<T> {
     item: T;
 }
 
-const useGetList = <T>(key: string | string[], url: string) => {
+const useGetList = <T>(key: string | string[], url: string, params?: any) => {
     const service = async () => {
-        const data: T = await Api.get(`${url}`);
+        const data: T = await Api.get(`${url}`, { params });
 
         return data;
     };

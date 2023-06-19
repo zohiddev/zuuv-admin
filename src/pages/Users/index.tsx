@@ -93,7 +93,7 @@ export const UsersPage = () => {
 
             <Table loading={isLoading} columns={columns} dataSource={users} />
 
-            <Drawer open={modalView} onClose={modalClose}>
+            <Drawer open={modalView} onClose={modalClose} width={900}>
                 <Table
                     loading={userAdsLoading}
                     columns={userAdColumns}
