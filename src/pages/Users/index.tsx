@@ -5,24 +5,23 @@ import { Avatar, Button, Drawer, Space, Table, Typography } from "antd";
 import { IAd, IUser, IUserAd } from "./type";
 import { ColumnsType } from "antd/es/table";
 import { RequestT } from "@utils/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { PostTable } from "@pages/Posts/components/PostTable";
 
 export const UsersPage = () => {
     const [userId, setUserId] = useState<number | null>(null);
+    const [params, setParams] = useSearchParams();
+    const { search } = useLocation();
     const [modalView, setModalView] = useState<boolean>(false);
     const { data, isLoading, refetch } = useGetList<RequestT<IUser[]>>(
-        "users",
-        usersListUrl
+        ["users", search],
+        usersListUrl + search
     );
 
-    const {
-        data: userAds,
-        isLoading: userAdsLoading,
-        refetch: userAdsRefetch,
-    } = useGetList<RequestT<IUserAd>>(
-        ["user-ads", String(userId)],
-        userAdsList(userId as number)
-    );
+    const { data: userAds, isLoading: userAdsLoading } = useGetList<
+        RequestT<IUserAd>
+    >(["user-ads", String(userId)], userAdsList(userId as number));
 
     const users = data?.data;
 
@@ -64,25 +63,14 @@ export const UsersPage = () => {
         },
     ];
 
-    const userAdColumns: ColumnsType<IAd> = [
-        {
-            title: "ID",
-            dataIndex: "id",
-        },
-        {
-            title: "Phone number",
-            dataIndex: "phone_number",
-        },
-        {
-            title: "Price",
-            dataIndex: "price",
-        },
-    ];
-
     const modalClose = () => {
         setUserId(null);
         setModalView(false);
     };
+
+    useEffect(() => {
+        setParams({ count: false } as any);
+    }, []);
 
     return (
         <div>
@@ -93,11 +81,10 @@ export const UsersPage = () => {
 
             <Table loading={isLoading} columns={columns} dataSource={users} />
 
-            <Drawer open={modalView} onClose={modalClose} width={900}>
-                <Table
+            <Drawer open={modalView} onClose={modalClose} width={"80vw"}>
+                <PostTable
+                    posts={userAds?.data?.ads as IAd[]}
                     loading={userAdsLoading}
-                    columns={userAdColumns}
-                    dataSource={userAds?.data?.ads}
                 />
             </Drawer>
         </div>

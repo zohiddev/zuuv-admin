@@ -7,6 +7,10 @@ interface IUser {
     status: string;
 }
 
+interface IRegion {
+    name_uz: string;
+}
+
 interface IAd {
     arrives_at: string;
     call_count: number;
@@ -31,6 +35,13 @@ interface IAd {
     updated_at: string;
     user_type: string;
     view_count: number;
+    user: IUser;
+    from_country: IRegion;
+    from_region: IRegion;
+    from_city: IRegion;
+    to_country: IRegion;
+    to_region: IRegion;
+    to_city: IRegion;
 }
 
 interface IUserAd extends IUser {

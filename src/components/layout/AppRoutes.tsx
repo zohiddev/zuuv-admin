@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import { Layout, Menu, Button, Dropdown, MenuProps } from "antd";
+import { Layout, Menu, Button, Dropdown } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { menubar, profileMenu } from "@utils/data";
 import { routes } from "@utils/routes";
 import { UserOutlined } from "@ant-design/icons";
 import clsx from "clsx";
 import { useAuthContext } from "@context/AuthProvider";
+import { AdModal } from "@pages/Posts/components/AdModal";
 
 const { Content, Sider } = Layout;
 
 const AppRoutes = () => {
-    const [collapsed, setCollapsed] = useState(true);
     const location = useLocation();
     const [activeMenu, setActiveMenu] = useState(["1"]);
     const [openMenu, setOpenMenu] = useState(false);
@@ -19,10 +19,12 @@ const AppRoutes = () => {
 
     useEffect(() => {
         for (const item of menubar) {
-            if (item.path === location.pathname) {
+            if (
+                item.path === location.pathname ||
+                location.search.includes(item.location)
+            ) {
                 setActiveMenu([`${item.id}`]);
                 setOpenMenu(false);
-                setCollapsed(false);
             }
         }
     }, [location]);
@@ -62,6 +64,8 @@ const AppRoutes = () => {
                     </Routes>
                 </div>
             </Content>
+
+            <AdModal />
         </Layout>
     );
 };

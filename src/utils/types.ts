@@ -12,6 +12,7 @@ interface IMenus {
     id: number | string;
     title: string;
     path: string;
+    location: string;
     icon: ReactNode;
 }
 

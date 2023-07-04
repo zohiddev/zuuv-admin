@@ -1,0 +1,66 @@
+.dashboard {
+    &-cards {
+        @include flex(flex-start, unset);
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    &-card {
+        height: 170px;
+        width: calc((100% / 4) - 24px);
+        flex-wrap: wrap;
+        padding: 24px;
+        background-color: $white;
+        border-radius: 12px;
+        @include flex(flex-start, space-between);
+        flex-direction: column;
+
+        &__flex-auto {
+            width: calc(((100% / 4) - 24px) * 1.5);
+        }
+
+        &__title {
+            font-weight: 600;
+            font-size: 18px;
+            color: $black-75;
+        }
+
+        &__number {
+            font-weight: 700;
+            font-size: 32px;
+            color: $black-100;
+        }
+    }
+
+    &-row {
+        display: flex;
+        gap: 24px;
+    }
+
+    &-col {
+        background-color: $white;
+        border-radius: 16px;
+        padding: 24px;
+
+        &-8 {
+            width: 66.6666666%;
+        }
+
+        &-4 {
+            width: 33.3333333%;
+        }
+
+        &__title {
+            font-weight: 700;
+            font-size: 20px;
+            color: $black-75;
+            margin-bottom: 10px;
+        }
+
+        &__subtitle {
+            font-weight: 500;
+            font-size: 16px;
+            color: $black-50;
+        }
+    }
+}
