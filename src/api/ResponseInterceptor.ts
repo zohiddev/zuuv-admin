@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { RefreshPostResponse } from "./types";
 import { Api } from ".";
 import { getStorage, setStorage } from "@utils/helpers";
@@ -6,21 +6,20 @@ import { refreshTokenUrl } from "@utils/urls";
 
 export const responseInterceptor = async (response: AxiosResponse) => {
     const refresh_token = getStorage("refresh_token");
-    if (response?.data?.error?.message == "INVALID_JWT") {
-        return (window.location.href = "/logout");
-    }
+    // if (response?.data?.error?.message == "INVALID_JWT") {
+    //     return (window.location.href = "/logout");
+    // }
     if (
-        response?.data?.error?.message?.status === "JWT_EXPIRED" &&
+        (response?.data?.error?.message?.status === "JWT_EXPIRED" ||
+            response?.data?.error?.message?.status === "INVALID_JWT") &&
         refresh_token !== null
     ) {
         try {
-            const getRefresh = await axios.post<RefreshPostResponse>(
+            const getRefresh = await Api.post<RefreshPostResponse>(
                 refreshTokenUrl,
-                {
-                    refreshToken: refresh_token,
-                }
+                { refresh_token }
             );
-            if (!getRefresh.data.data.success) {
+            if (getRefresh.status !== 201) {
                 return (window.location.href = "/logout");
             }
             const { accessToken } = getRefresh.data.data;

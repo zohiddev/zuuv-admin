@@ -109,3 +109,11 @@ html {
 .ant-table {
     border-radius: 8px !important;
 }
+
+.filter-select {
+    &.ant-space,
+    .ant-space,
+    .ant-select {
+        width: 100% !important;
+    }
+}

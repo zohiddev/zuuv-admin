@@ -126,7 +126,17 @@ export const PostTable: FC<IPosts> = ({ posts, loading }) => {
             loading={loading}
             columns={adColumns}
             dataSource={posts}
-            pagination={false}
+            // pagination={{
+            //     defaultCurrent: 1,
+            //     current: response?.data?.page,
+            //     total: response?.data?.total,
+            //     pageSizeOptions: [10, 20, 30],
+            //     showSizeChanger: true,
+            //     responsive: true,
+            //     showTotal: (total) => `Total ${total} items`,
+            //     onChange: (to) => pageTo(to),
+            //     onShowSizeChange: (_, size) => showSizeChange(size),
+            // }}
         />
     );
 };

@@ -1,38 +1,69 @@
-import React, { FC } from "react";
-import { DatePicker, Drawer, Space } from "antd";
-import { IFilterModal } from "../types";
-import locale from "antd/es/date-picker/locale/ru_RU";
-import { convertQueryParamsTO, postDataClr } from "@utils/helpers";
-import { useLocation, useSearchParams } from "react-router-dom";
-
-const { RangePicker } = DatePicker;
+import { FC } from "react";
+import { Button, Drawer, Space, Typography } from "antd";
+import { IFilterModal, LocationT } from "../types";
+import { useGetList } from "@hooks/request";
+import { locationsListUrl } from "@utils/urls";
+import { RegionSelect } from "./RegionSelect";
+import { DateSelect } from "./DateSelect";
+import { TransportTypeSelect } from "./TransportTypeSelect";
+import { useSearchParams } from "react-router-dom";
 
 export const FilterModal: FC<IFilterModal> = ({ open, handleClose }) => {
-    const { search } = useLocation();
     const [params, setParams] = useSearchParams();
+    const filterTypes = [
+        "transport_type",
+        "from_region",
+        "to_region",
+        "leaves_at_start",
+        "leaves_at_end",
+    ];
+    const { data: locations = [], isLoading } = useGetList<LocationT[]>(
+        ["location"],
+        locationsListUrl + `?query=%20`
+    );
 
-    const handleDateRangeChange = (e: any) => {
-        const leaves_at_start = e && e[0].$d.getTime();
-        const leaves_at_end = e && e[1].$d.getTime();
-        const normalizeData = {
-            ...convertQueryParamsTO(search),
-            leaves_at_start,
-            leaves_at_end,
-        };
-        e === null
-            ? setParams(
-                  postDataClr(convertQueryParamsTO(search), [
-                      "leaves_at_start",
-                      "leaves_at_end",
-                  ])
-              )
-            : setParams(normalizeData);
+    const clearFilter = () => {
+        for (let type of filterTypes) {
+            if (!!params.get(type)) {
+                params.delete(type);
+            }
+        }
+        setParams(params);
     };
 
+    if (!open) {
+        return null;
+    }
+
     return (
-        <Drawer open={open} onClose={handleClose} title='Filter'>
-            <Space>
-                <RangePicker locale={locale} onChange={handleDateRangeChange} />
+        <Drawer
+            open={open}
+            onClose={handleClose}
+            title='Filter'
+            extra={<Button onClick={clearFilter}>Clear</Button>}
+        >
+            <Space direction='vertical'>
+                <DateSelect />
+
+                <Space direction='vertical' className='filter-select'>
+                    <Typography>Yo’nalishni tanlang</Typography>
+                    <Space direction='vertical'>
+                        <RegionSelect
+                            locations={locations}
+                            placeholder='Qayerdan'
+                            name='from_region'
+                        />
+                        <RegionSelect
+                            locations={locations}
+                            placeholder='Qayerga'
+                            name='to_region'
+                        />
+                    </Space>
+                </Space>
+                <Space direction='vertical' className='filter-select'>
+                    <Typography>Transport turlari</Typography>
+                    <TransportTypeSelect />
+                </Space>
             </Space>
         </Drawer>
     );

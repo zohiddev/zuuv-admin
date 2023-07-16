@@ -18,6 +18,8 @@ export const PostsPage = () => {
         postListUrl + search
     );
 
+    console.log(data);
+
     const [filterOpen, setFilterOpen] = useState(false);
 
     const filterOnClose = () => {

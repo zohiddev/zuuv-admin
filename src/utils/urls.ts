@@ -25,3 +25,7 @@ export const parcelListUrl = "/posts/search?type=parcel";
 export const statisticsAds = "/statistics/ads";
 export const statisticsUsers = "/statistics/users";
 export const statisticsSolvedAds = "/statistics/solved-ads";
+
+// Locations
+
+export const locationsListUrl = "/location";
