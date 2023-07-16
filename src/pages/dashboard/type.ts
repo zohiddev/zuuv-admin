@@ -20,3 +20,12 @@ export type DataType = {
     type: string;
     value: number;
 };
+
+export type TStatistics = {
+    value: number;
+    month: string;
+};
+
+export interface IChartStatistics {
+    statistics: any;
+}

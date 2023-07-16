@@ -1,6 +1,10 @@
 import { useGetList } from "@hooks/request";
 import { RequestT } from "@utils/types";
-import { statisticsSolvedAds, statisticsUsers } from "@utils/urls";
+import {
+    statisticsAds,
+    statisticsSolvedAds,
+    statisticsUsers,
+} from "@utils/urls";
 import { ISolvedAds, IUserStatistics } from "./type";
 import PieStatistics from "./components/PieStatistics";
 import { ChartStatistics } from "./components/ChartStatistics";
@@ -10,6 +14,13 @@ export const DashboardPage = () => {
         "userStatistics",
         statisticsUsers
     );
+
+    const { data: statistics } = useGetList<RequestT<any>>(
+        "statistics",
+        statisticsAds + "?interval=alltime"
+    );
+
+    console.log(statistics);
 
     const { data: solvedAds, isLoading } = useGetList<RequestT<ISolvedAds>>(
         "solvedAds",
@@ -59,7 +70,9 @@ export const DashboardPage = () => {
                             </p>
                         </div>
                     </div>
-                    <ChartStatistics />
+                    {statistics && (
+                        <ChartStatistics statistics={statistics?.data} />
+                    )}
                 </div>
                 <div className='dashboard-col dashboard-col-4'>
                     {isLoading ? (
